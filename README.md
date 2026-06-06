@@ -106,16 +106,6 @@ powershell -ExecutionPolicy Bypass -File ".claude\notify.ps1"
 
 ---
 
-## 两种方式对比
-
-| | 全局配置 | 项目配置 |
-|---|---|---|
-| 生效范围 | 所有项目 | 仅当前项目 |
-| 配置文件位置 | `~/.claude/settings.json` | `<项目>/.claude/settings.json` |
-| 脚本位置 | `~/.claude/notify.ps1` | `<项目>/.claude/notify.ps1` |
-| 是否跟随 git | ❌ | ✅ 可以提交到仓库共享 |
-| 适合场景 | 个人使用 | 团队协作 |
-
 ## 效果
 
 - 给 Claude 发完指令后切走做其他事
