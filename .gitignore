@@ -1,0 +1,11 @@
+# 临时文件
+*.log
+*.tmp
+
+# 系统文件
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
