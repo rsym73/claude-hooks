@@ -62,7 +62,7 @@ powershell -ExecutionPolicy Bypass -File "C:\Users\<你的用户名>\.claude\not
 
 ## 安装方式二：项目配置
 
-仅对当前项目生效，配置跟随项目走，方便团队共享。
+仅对当前项目生效。
 
 ### 1. 放置通知脚本
 
