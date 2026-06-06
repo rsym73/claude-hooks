@@ -1,6 +1,6 @@
 # claude-hooks
 
-Claude Code hooks 配置 —— 当 Claude 停下来等你时，Windows 右下角弹出提醒通知。
+Claude Code hooks 配置 —— 当 Claude 停下来等你时，Windows 桌面弹出提醒，5 秒后自动消失。
 
 支持两种安装模式：**全局配置**（所有项目生效）和**项目配置**（仅当前项目生效）。
 
@@ -109,7 +109,7 @@ powershell -ExecutionPolicy Bypass -File ".claude\notify.ps1"
 ## 效果
 
 - 给 Claude 发完指令后切走做其他事
-- Claude 停下来等你时 → 右下角弹出 "Claude 在等你"
+- Claude 停下来等你时 → 桌面弹出 "Claude 在等你"，5 秒后自动消失
 - 切回来继续操作
 
 ## Hook 说明
@@ -117,9 +117,9 @@ powershell -ExecutionPolicy Bypass -File ".claude\notify.ps1"
 | 项目 | 值 |
 |---|---|
 | 事件 | `Stop` — Claude 停止等待用户输入时触发 |
-| 通知形式 | Windows 系统托盘气泡通知 |
+| 通知形式 | 桌面弹窗（wscript Popup），5 秒后自动消失 |
 | 通知内容 | "Claude 在等你" |
-| 显示时长 | 5 秒 |
+| 实现方式 | PowerShell 生成临时 VBScript → wscript 弹窗 |
 
 ## 免责声明
 
