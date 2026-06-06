@@ -1,4 +1,4 @@
-# claude-rsym-hooks
+# claude-hooks
 
 Claude Code hooks 配置 —— 当 Claude 停下来等你时，Windows 右下角弹出提醒通知。
 
