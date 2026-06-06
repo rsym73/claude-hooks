@@ -6,13 +6,14 @@ Claude Code hooks 配置 —— 当 Claude 停下来等你时，Windows 桌面�
 
 ## 包含内容
 
-- `notify.ps1` — Windows 通知脚本
+- `notify.py` — Windows 通知脚本（Python）
 - `README.md` — 本文件
 
 ## 前提条件
 
 - Windows 10 或 Windows 11
 - Claude Code 已安装
+- Python 3.x 已安装且 `python` 命令在 PATH 中（推荐安装时勾选 "Add to PATH"）
 
 ---
 
@@ -22,10 +23,10 @@ Claude Code hooks 配置 —— 当 Claude 停下来等你时，Windows 桌面�
 
 ### 1. 放置通知脚本
 
-将 `notify.ps1` 复制到 Claude Code 全局配置目录：
+将 `notify.py` 复制到 Claude Code 全局配置目录：
 
 ```
-C:\Users\<你的用户名>\.claude\notify.ps1
+C:\Users\<你的用户名>\.claude\notify.py
 ```
 
 ### 2. 配置 Hook
@@ -40,7 +41,7 @@ C:\Users\<你的用户名>\.claude\notify.ps1
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \"C:\\Users\\<你的用户名>\\.claude\\notify.ps1\"",
+            "command": "pythonw \"C:\\Users\\<你的用户名>\\.claude\\notify.py\" 2>NUL || python \"C:\\Users\\<你的用户名>\\.claude\\notify.py\"",
             "timeout": 10
           }
         ]
@@ -51,25 +52,27 @@ C:\Users\<你的用户名>\.claude\notify.ps1
 ```
 
 > ⚠️ `settings.json` 可能已有其他配置，请将 `hooks` 字段合并进去，不要覆盖已有内容。
+>
+> 💡 `pythonw` 是无窗口模式，弹窗时不会闪烁 CMD 窗口；若不可用则回退到 `python`。
 
 ### 3. 验证
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File "C:\Users\<你的用户名>\.claude\notify.ps1"
+python "C:\Users\<你的用户名>\.claude\notify.py"
 ```
 
 ---
 
 ## 安装方式二：项目配置
 
-仅对当前项目生效。
+仅对当前项目生效，配置跟随项目走，方便团队共享。
 
 ### 1. 放置通知脚本
 
-将 `notify.ps1` 复制到项目的 `.claude` 目录下：
+将 `notify.py` 复制到项目的 `.claude` 目录下：
 
 ```
-<项目根目录>\.claude\notify.ps1
+<项目根目录>\.claude\notify.py
 ```
 
 ### 2. 配置 Hook
@@ -84,7 +87,7 @@ powershell -ExecutionPolicy Bypass -File "C:\Users\<你的用户名>\.claude\not
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \".claude\\notify.ps1\"",
+            "command": "pythonw \".claude\\notify.py\" 2>NUL || python \".claude\\notify.py\"",
             "timeout": 10
           }
         ]
@@ -94,14 +97,14 @@ powershell -ExecutionPolicy Bypass -File "C:\Users\<你的用户名>\.claude\not
 }
 ```
 
-> 💡 项目级配置使用相对路径 `.claude\notify.ps1`，Claude Code 会自动基于项目根目录解析。
+> 💡 项目级配置使用相对路径 `.claude\notify.py`，Claude Code 会自动基于项目根目录解析。
 
 ### 3. 验证
 
 在项目根目录下运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File ".claude\notify.ps1"
+python ".claude\notify.py"
 ```
 
 ---
@@ -117,9 +120,9 @@ powershell -ExecutionPolicy Bypass -File ".claude\notify.ps1"
 | 项目 | 值 |
 |---|---|
 | 事件 | `Stop` — Claude 停止等待用户输入时触发 |
-| 通知形式 | 桌面弹窗（wscript Popup），5 秒后自动消失 |
+| 通知形式 | Windows MessageBox 弹窗，5 秒后自动消失 |
 | 通知内容 | "Claude 在等你" |
-| 实现方式 | PowerShell 生成临时 VBScript → wscript 弹窗 |
+| 实现方式 | Python ctypes 调用 `MessageBoxTimeoutW` API（标准库，无第三方依赖） |
 
 ## 免责声明
 
