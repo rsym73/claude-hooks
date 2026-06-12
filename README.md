@@ -41,7 +41,7 @@ C:\Users\<你的用户名>\.claude\notify.py
         "hooks": [
           {
             "type": "command",
-            "command": "pythonw \"C:\\Users\\<你的用户名>\\.claude\\notify.py\" 2>NUL || python \"C:\\Users\\<你的用户名>\\.claude\\notify.py\"",
+            "command": "python \"C:\\Users\\<你的用户名>\\.claude\\notify.py\"",
             "timeout": 10
           }
         ]
@@ -52,8 +52,6 @@ C:\Users\<你的用户名>\.claude\notify.py
 ```
 
 > ⚠️ `settings.json` 可能已有其他配置，请将 `hooks` 字段合并进去，不要覆盖已有内容。
->
-> 💡 `pythonw` 是无窗口模式，弹窗时不会闪烁 CMD 窗口；若不可用则回退到 `python`。
 
 ### 3. 验证
 
@@ -87,7 +85,7 @@ python "C:\Users\<你的用户名>\.claude\notify.py"
         "hooks": [
           {
             "type": "command",
-            "command": "pythonw \".claude\\notify.py\" 2>NUL || python \".claude\\notify.py\"",
+            "command": "python \".claude\\notify.py\"",
             "timeout": 10
           }
         ]
