@@ -6,7 +6,7 @@ Claude Code hooks 配置 —— 当 Claude 停下来等你时，Windows 桌面�
 
 ## 包含内容
 
-- `notify.py` — Windows 通知脚本（Python）
+- `hooks/notify.py` — Windows 通知脚本（Python）
 - `README.md` — 本文件
 
 ## 前提条件
@@ -26,7 +26,7 @@ Claude Code hooks 配置 —— 当 Claude 停下来等你时，Windows 桌面�
 将 `notify.py` 复制到 Claude Code 全局配置目录：
 
 ```
-C:\Users\<你的用户名>\.claude\notify.py
+C:\Users\<你的用户名>\.claude\hooks\notify.py
 ```
 
 ### 2. 配置 Hook
@@ -41,7 +41,7 @@ C:\Users\<你的用户名>\.claude\notify.py
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:\\Users\\<你的用户名>\\.claude\\notify.py\"",
+            "command": "python \"C:\\Users\\<你的用户名>\\.claude\\hooks\\notify.py\"",
             "timeout": 10
           }
         ]
@@ -56,7 +56,7 @@ C:\Users\<你的用户名>\.claude\notify.py
 ### 3. 验证
 
 ```powershell
-python "C:\Users\<你的用户名>\.claude\notify.py"
+python "C:\Users\<你的用户名>\.claude\hooks\notify.py"
 ```
 
 ---
@@ -70,7 +70,7 @@ python "C:\Users\<你的用户名>\.claude\notify.py"
 将 `notify.py` 复制到项目的 `.claude` 目录下：
 
 ```
-<项目根目录>\.claude\notify.py
+<项目根目录>\.claude\hooks\notify.py
 ```
 
 ### 2. 配置 Hook
