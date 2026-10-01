@@ -168,6 +168,14 @@ dsh plugin --profile web add ./dsh-stop-notify
 首次使用会初始化 profile（以 `@deepseek-ai/dsh-base` 为首个 bundle），并把本包追加到 `dsh.profile.bundles`。
 
 > 💡 要装进多个 profile（相当于「全局」），对每个 profile 各执行一次 `add`。
+>
+> 🖥️ **桌面版（Electron 应用，非网页版）**：桌面版使用独立的 `desktop` profile，需要单独安装：
+>
+> ```powershell
+> dsh plugin --profile desktop add ./dsh-stop-notify
+> ```
+>
+> `desktop` profile 由桌面应用独占管理，CLI 会拒绝 `--dump-config --profile desktop`；安装后重启桌面应用生效，也可以在桌面版的「设置 → 插件」里安装。
 
 ### 验证
 
