@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "description": "DeepSeek Harness 插件：Agent 停止等待时弹出 Windows 桌面提醒（Python 版，Claude Code Stop hook 的移植）",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "index.js",
   "exports": {
-    ".": "./lib/index.js"
+    ".": "./index.js"
   },
   "files": [
-    "lib/index.js",
-    "notify.py"
+    "index.js",
+    "notify.py",
+    "cordis.patch.yml"
   ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
   "license": "MIT"
 }

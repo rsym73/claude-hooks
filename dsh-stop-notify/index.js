@@ -10,8 +10,8 @@ import { dirname, join } from "node:path";
 
 export const name = "stop-notify";
 
-// 定位 notify.py（与包根目录同级）
-const SCRIPT = join(dirname(fileURLToPath(import.meta.url)), "..", "notify.py");
+// 定位 notify.py（与本入口同目录）
+const SCRIPT = join(dirname(fileURLToPath(import.meta.url)), "notify.py");
 
 /**
  * @param {object} [config]

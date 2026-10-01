@@ -1,0 +1,5 @@
+# dsh-stop-notify bundle 的配置层：当 profile 在 dsh.profile.bundles 中列出本包时应用。
+# 插件行按包名引用模块（交给 Node 模块解析），而非相对源码路径。
+- insert:
+    - id: stop-notify
+      name: 'dsh-stop-notify'
